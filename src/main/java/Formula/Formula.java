@@ -119,7 +119,7 @@ public class Formula implements Check, Count{
         line = line.replace("+-", "-");
         line = line.replace("-+", "-");
         line = line.replace("--", "+");
-        line = line.replace("-/", "");
+//        line = line.replace("-/", "");
         return line;
     }
 
