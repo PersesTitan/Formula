@@ -70,8 +70,6 @@ public class Formula implements Check, Count{
 //        System.out.println(singList);
 
         while (singList.size()>0) {
-            System.out.println(numberList);
-            System.out.println(singList);
             if (operation) {
                 if (formula.check(singList) && singList.size()>1) {
                     int position = (int) formula.count(singList);
@@ -103,8 +101,6 @@ public class Formula implements Check, Count{
         for (int i = 0; i<singList.size(); i++) {
             String sing = singList.get(i);
             sing = formula.changeSing(sing).strip();
-
-            System.out.println(Double.parseDouble(numberList.get(i + 1)));
 
             if (sing.equals(formula.plus)) total += Double.parseDouble(numberList.get(i + 1));
             if (sing.equals(formula.minus)) total -= Double.parseDouble(numberList.get(i + 1));
