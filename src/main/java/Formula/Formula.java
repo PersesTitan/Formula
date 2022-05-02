@@ -84,6 +84,7 @@ public class Formula implements Check, Count{
                     numberList.set(position, Double.toString(totalNumber));
                     numberList.remove(position+1);
                     singList.remove(position);
+
                 } else calculation(numberList, singList);
             } else calculation(numberList, singList);
         }
@@ -99,10 +100,12 @@ public class Formula implements Check, Count{
         double total = Double.parseDouble(numberList.get(0));
         for (int i = 0; i<singList.size(); i++) {
             String sing = singList.get(i);
-            if (sing.equals("+")) total += Double.parseDouble(numberList.get(i + 1));
-            if (sing.equals("-")) total -= Double.parseDouble(numberList.get(i + 1));
-            if (sing.equals("*")) total *= Double.parseDouble(numberList.get(i + 1));
-            if (sing.equals("/")) total /= Double.parseDouble(numberList.get(i + 1));
+            sing = formula.changeSing(sing).strip();
+
+            if (sing.equals(formula.plus)) total += Double.parseDouble(numberList.get(i + 1));
+            if (sing.equals(formula.minus)) total -= Double.parseDouble(numberList.get(i + 1));
+            if (sing.equals(formula.multiple)) total *= Double.parseDouble(numberList.get(i + 1));
+            if (sing.equals(formula.division)) total /= Double.parseDouble(numberList.get(i + 1));
         }
 
         numberList.set(0, String.valueOf(total));
@@ -114,11 +117,9 @@ public class Formula implements Check, Count{
         line = line.replace("+/", "/");
         line = line.replace("+*", "*");
         line = line.replace("+-", "-");
-
         line = line.replace("-+", "-");
         line = line.replace("--", "+");
-
-        line = line.replace("-/", "");
+//        line = line.replace("-/", "");
         return line;
     }
 

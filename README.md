@@ -4,6 +4,7 @@
 ## Jar 파일 다운로드 링크
   [모든 버전 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar)</br>
   [V1 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar/V1)</br>
+  [V2 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar/V2)</br>
   
 # 사용법
 라이브러리 들어가서 jar파일을 추가해 주세요.
@@ -29,3 +30,4 @@
                           
 # 버전
   1. 2022/5/2 V1 - formula 추가
+  2. 2022/5/2 V2 - 음수 계산 
