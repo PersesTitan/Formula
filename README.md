@@ -3,21 +3,32 @@
 
 ## Jar 파일 다운로드 링크
   [모든 버전 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar)</br>
-  [V1 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar/V1)</br>
+  ~~[V1 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar/V1)</br>~~
   [V2 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar/V2)</br>
+  [V3 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar/V3)</br>
   
 # 사용법
 라이브러리 들어가서 jar파일을 추가해 주세요.
   
-  
-## formula(String plus, String minus, String multiple, String division);
 
-설명 : +, -, *, / 를 직접 설정할 수 있는 메소드입니다. </br>
+# 생성자
+## Formula formula = new Formula(); </br>
+설명 : 기본 값이 적용됩니다. (기본 값은 하단에 정리되있음)</br>
+</br>
+## Formula formula = new Formula(String plus, String minus, String multiple, String division); </br>
+설명 : +, -, *, / 를 직접 설정할 수 있습니다. </br>
 리턴타입 : void </br>
   * plus = 더하기를 정의하는 변수 (기본값 : +)
   * minus = 빼기를 정의하는 변수 (기본값 : -)
   * multiple = 곱하기를 정의하는 변수 (기본값 : *)
   * division = 나누기를 정의하는 변수 (기본값 : /)
+
+</br>
+
+---
+
+</br>
+
 
 ## formula(String line, boolean operation);
   
@@ -29,5 +40,6 @@
                           
                           
 # 버전
-  1. 2022/5/2 V1 - formula 추가
-  2. 2022/5/2 V2 - 음수 계산 
+  1. 2022/5/2 V1 - formula 추가 (에러로 인해 생략)
+  2. 2022/5/2 V2 - 음수 계산 문제해결
+  3. 2022/5/4 V3 - 생성자로 변경
