@@ -3,7 +3,7 @@
 
 ## Jar 파일 다운로드 링크
   [모든 버전 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar)</br>
-  [V1 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar/V1)</br>
+  ~~[V1 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar/V1)</br>~~
   [V2 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar/V2)</br>
   [V3 다운로드](https://downgit.evecalm.com/#/home?url=https://github.com/PersesTitan/Formula/Jar/V3)</br>
   
@@ -40,6 +40,6 @@
                           
                           
 # 버전
-  1. 2022/5/2 V1 - formula 추가
+  1. 2022/5/2 V1 - formula 추가 (에러로 인해 생략)
   2. 2022/5/2 V2 - 음수 계산 문제해결
   3. 2022/5/4 V3 - 생성자로 변경
