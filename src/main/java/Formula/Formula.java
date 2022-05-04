@@ -1,27 +1,34 @@
 package Formula;
 
+import lombok.NonNull;
+
+import javax.validation.constraints.NotNull;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class Formula implements Check, Count{
+    String plus = "+";
+    String multiple = "*";
+    String minus = "-";
+    String division = "/";
 
-    public String plus = "+";
-    public String multiple = "*";
-    public String minus = "-";
-    public String division = "/";
-    static Formula formula = new Formula();
+    public Formula() {}
 
-    public static void formula(String plus, String minus, String multiple, String division) {
-        formula.plus = plus;
-        formula.minus = minus;
-        formula.multiple = multiple;
-        formula.division = division;
+    public Formula(@NotNull String plus, @NotNull String minus, @NotNull String multiple, @NotNull String division) throws IOException {
+        boolean bool = plus.equals(minus) || plus.equals(multiple) || plus.equals(division);
+        bool = bool || minus.equals(multiple) || minus.equals(division) || multiple.equals(division);
+        if (bool) throw new IOException("같은 문자는 사용이 불가능합니다.");
+        this.plus = plus;
+        this.minus = minus;
+        this.multiple = multiple;
+        this.division = division;
     }
 
     //괄호 연산하는 메소드
-    public static double formula(String line, boolean operation) {
+    public double formula(String line, boolean operation) {
         if (count(line, ')') != count(line, '('))
             System.err.println("괄호의 짝이 일치하지 않습니다.");
 
@@ -39,23 +46,17 @@ public class Formula implements Check, Count{
         return Double.parseDouble(line);
     }
 
-    private static double form(String lines, boolean operation) {
-        String multiple;
-        String plus;
-        if (formula.multiple.equals("*")) multiple = "\\*";
-        else multiple = formula.multiple;
-
-        if (formula.plus.equals("+")) plus = "\\+";
-        else plus = formula.plus;
-
-        String minus = formula.minus;
-        String division = formula.division;
+    private double form(@NonNull String lines, @NonNull boolean operation) {
+        String multiple = this.multiple.equals("*") ? "\\*" : this.multiple;;
+        String plus = this.plus.equals("+") ? "\\+" : this.plus;
+        String minus = this.minus;
+        String division = this.division;
 
         lines = lines.replace(" ", "");
         lines = lines.replace(minus, " "+minus);
         String[] numbers = lines.split(plus+"|"+multiple+"|"+division+"|"+" ");
-        String[] sings = lines.replace(minus, formula.plus).split("[0-9|^.]");
-        multiple = formula.multiple;
+        String[] sings = lines.replace(minus, this.plus).split("[0-9|^.]");
+        multiple = this.multiple;
 
         List<String> numberList = new ArrayList<>(Arrays.asList(numbers));
         List<String> singList = new ArrayList<>(Arrays.asList(sings));
@@ -71,8 +72,8 @@ public class Formula implements Check, Count{
 
         while (singList.size()>0) {
             if (operation) {
-                if (formula.check(singList) && singList.size()>1) {
-                    int position = (int) formula.count(singList);
+                if (this.check(singList) && singList.size()>1) {
+                    int position = (int) this.count(singList);
                     double totalNumber = Double.parseDouble(numberList.get(position));
 
                     String sing = singList.get(position);
@@ -95,17 +96,16 @@ public class Formula implements Check, Count{
      * @param numberList 숫자를 저장하는 리스트
      * @param singList 기호를 저장하는 리스트
      */
-
-    private static void calculation(List<String> numberList, List<String> singList) {
+    private void calculation(List<String> numberList, List<String> singList) {
         double total = Double.parseDouble(numberList.get(0));
         for (int i = 0; i<singList.size(); i++) {
             String sing = singList.get(i);
-            sing = formula.changeSing(sing).strip();
+            sing = this.changeSing(sing).strip();
 
-            if (sing.equals(formula.plus)) total += Double.parseDouble(numberList.get(i + 1));
-            if (sing.equals(formula.minus)) total -= Double.parseDouble(numberList.get(i + 1));
-            if (sing.equals(formula.multiple)) total *= Double.parseDouble(numberList.get(i + 1));
-            if (sing.equals(formula.division)) total /= Double.parseDouble(numberList.get(i + 1));
+            if (sing.equals(this.plus)) total += Double.parseDouble(numberList.get(i + 1));
+            if (sing.equals(this.minus)) total -= Double.parseDouble(numberList.get(i + 1));
+            if (sing.equals(this.multiple)) total *= Double.parseDouble(numberList.get(i + 1));
+            if (sing.equals(this.division)) total /= Double.parseDouble(numberList.get(i + 1));
         }
 
         numberList.set(0, String.valueOf(total));
@@ -133,11 +133,11 @@ public class Formula implements Check, Count{
         return list.stream().filter(s -> s.equals(multiple)||s.equals(division)).count();
     }
 
-    private static boolean check(String line) {
+    private boolean check(String line) {
         return line.contains(")") || line.contains("(");
     }
 
-    private static long count(String line, char c) {
+    private long count(String line, char c) {
         return line.chars().filter(ch -> ch==c).count();
     }
 
